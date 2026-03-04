@@ -1,5 +1,31 @@
+# General Rules
 User-agent: *
 Allow: /
-Disallow: /api/
+Allow: /api/search
+Allow: /?q=*
 
-Sitemap: https://anobyte.online/sitemap.xml
+# Block unnecessary crawling
+Disallow: /api/
+Disallow: /.next/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Crawl delay
+Crawl-delay: 0
+
+# Google Ads Bot
+User-agent: AdsBot-Google
+Crawl-delay: 0
+
+# Googlebot specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemaps for indexing
+Sitemap: https://search.anobyte.online/sitemap.xml

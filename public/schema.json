@@ -1,0 +1,45 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Anointed Agunloye",
+  "alternateName": [
+    "Anointed the developer",
+    "anointedthedeveloper",
+    "Agunloye Anointed"
+  ],
+  "url": "https://anobyte.online",
+  "image": "https://anobyte.online/og-image.jpg",
+  "description": "Full-stack web developer specializing in modern web applications, open source contributions, and innovative digital solutions",
+  "sameAs": [
+    "https://github.com/anointedthedeveloper",
+    "https://twitter.com/anointedthedeveloper",
+    "https://linkedin.com/in/anointedthedeveloper"
+  ],
+  "jobTitle": "Web Developer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Anobyte",
+    "url": "https://anobyte.online"
+  },
+  "knowsAbout": [
+    "Web Development",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Full Stack Development",
+    "Frontend Development",
+    "Backend Development",
+    "Database Design",
+    "API Development"
+  ],
+  "email": "contact@anobyte.online",
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Web Developer",
+    "estimatedSalary": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "USD"
+    }
+  }
+}
