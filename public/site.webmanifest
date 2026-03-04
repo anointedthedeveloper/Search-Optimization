@@ -1,0 +1,24 @@
+{
+  "name": "Anointed Agunloye - Web Developer Search Portal",
+  "short_name": "Agunloye Search",
+  "description": "Find Anointed Agunloye across GitHub, portfolio, and projects",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "/screenshot.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    }
+  ]
+}

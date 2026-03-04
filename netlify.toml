@@ -1,0 +1,43 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_BUILD = "true"
+
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[headers]
+  [[headers.values]]
+    key = "X-Content-Type-Options"
+    value = "nosniff"
+
+  [[headers.values]]
+    key = "X-Frame-Options"
+    value = "DENY"
+
+  [[headers.values]]
+    key = "X-XSS-Protection"
+    value = "1; mode=block"
+
+  [[headers.values]]
+    key = "Referrer-Policy"
+    value = "strict-origin-when-cross-origin"
+
+[context.production]
+  environment = { NODE_ENV = "production" }
