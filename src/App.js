@@ -7,7 +7,7 @@ const DATASET = [
     name: "Anointed Agunloye — GitHub Profile",
     url: "https://github.com/anointedthedeveloper",
     description: "Official GitHub profile of Anointed Agunloye (anointedthedeveloper). Browse open-source projects, repositories, and code contributions.",
-    category: "social", icon: "github",
+    category: "social", icon: "Github",
     tags: ["anointed","agunloye","anointedthedeveloper","github","developer","code","open source"],
     priority: 10
   },
@@ -16,7 +16,7 @@ const DATASET = [
     name: "Anobyte Online — Personal Website",
     url: "https://anobyte.online",
     description: "The official personal website of Anointed Agunloye. Showcasing projects, blog posts, and the developer's full portfolio.",
-    category: "website", icon: "globe",
+    category: "website", icon: "Globe",
     tags: ["anointed","agunloye","anobyte","anobyte.online","portfolio","website","developer"],
     priority: 10
   },
@@ -25,7 +25,7 @@ const DATASET = [
     name: "Who is Anointed Agunloye?",
     url: "https://anobyte.online",
     description: "Anointed Agunloye is a web developer known online as anointedthedeveloper. He builds web applications, contributes to open source, and shares knowledge through anobyte.online.",
-    category: "about", icon: "user",
+    category: "about", icon: "User",
     tags: ["who is anointed","who is agunloye","anointed agunloye","about","developer","anointedthedeveloper"],
     priority: 9
   },
@@ -34,7 +34,7 @@ const DATASET = [
     name: "anointedthedeveloper — Developer Brand",
     url: "https://github.com/anointedthedeveloper",
     description: "anointedthedeveloper is the online handle and developer brand of Anointed Agunloye. Find all projects and profiles under this name across the web.",
-    category: "brand", icon: "code",
+    category: "brand", icon: "Code",
     tags: ["anointedthedeveloper","anointed the developer","developer","brand","handle"],
     priority: 9
   },
@@ -43,7 +43,7 @@ const DATASET = [
     name: "Anointed Agunloye — Portfolio & Projects",
     url: "https://anobyte.online",
     description: "Explore the full portfolio of Anointed Agunloye. Web development projects, tools, and experiments built by anointedthedeveloper.",
-    category: "portfolio", icon: "briefcase",
+    category: "portfolio", icon: "Briefcase",
     tags: ["anointed","agunloye","portfolio","projects","anobyte","web developer"],
     priority: 8
   },
@@ -52,7 +52,7 @@ const DATASET = [
     name: "Anointed Agunloye — GitHub Repositories",
     url: "https://github.com/anointedthedeveloper?tab=repositories",
     description: "All public repositories by Anointed Agunloye on GitHub. Source code, web apps, tools and more from anointedthedeveloper.",
-    category: "code", icon: "github",
+    category: "code", icon: "Github",
     tags: ["anointed","agunloye","github","repositories","code","anointedthedeveloper"],
     priority: 8
   },
@@ -61,7 +61,7 @@ const DATASET = [
     name: "Anobyte — Developer Platform by Anointed",
     url: "https://anobyte.online",
     description: "Anobyte is the personal developer platform and brand of Anointed Agunloye. Visit anobyte.online to learn more about his work and projects.",
-    category: "brand", icon: "zap",
+    category: "brand", icon: "Zap",
     tags: ["anobyte","anobyte.online","anointed","agunloye","platform","brand"],
     priority: 8
   },
@@ -70,7 +70,7 @@ const DATASET = [
     name: "Anointed the Developer — Contact & Hire",
     url: "https://anobyte.online",
     description: "Looking to hire or contact Anointed Agunloye? Visit his official site at anobyte.online or reach out via GitHub at anointedthedeveloper.",
-    category: "contact", icon: "mail",
+    category: "contact", icon: "Mail",
     tags: ["anointed","agunloye","hire","contact","freelance","developer","anobyte"],
     priority: 7
   },
@@ -79,7 +79,7 @@ const DATASET = [
     name: "Anointed Agunloye — GitHub Activity",
     url: "https://github.com/anointedthedeveloper?tab=stars",
     description: "See what Anointed Agunloye has starred and interacted with on GitHub. Explore the developer interests of anointedthedeveloper.",
-    category: "social", icon: "star",
+    category: "social", icon: "Star",
     tags: ["anointed","agunloye","github","activity","stars","anointedthedeveloper"],
     priority: 6
   },
@@ -88,7 +88,7 @@ const DATASET = [
     name: "Find Anointed Agunloye Online",
     url: "https://anobyte.online",
     description: "Looking for Anointed Agunloye online? He goes by anointedthedeveloper across platforms. GitHub: github.com/anointedthedeveloper | Website: anobyte.online",
-    category: "about", icon: "search",
+    category: "about", icon: "Search",
     tags: ["find anointed","anointed agunloye online","anointedthedeveloper","social profiles","links"],
     priority: 7
   }
@@ -101,23 +101,6 @@ const SUGGESTIONS = [
 ];
 
 // ─── Search logic (client-side) ──────────────────────────────────────────────
-function levenshtein(a, b) {
-  const dp = Array.from({ length: a.length + 1 }, (_, i) =>
-    Array.from({ length: b.length + 1 }, (_, j) => i === 0 ? j : j === 0 ? i : 0)
-  );
-  for (let i = 1; i <= a.length; i++)
-    for (let j = 1; j <= b.length; j++)
-      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
-  return dp[a.length][b.length];
-}
-
-const BRAND_KEYS = ["anointed","agunloye","anointedthedeveloper","anobyte","anointed the developer","anointed agunloye"];
-
-function isRelevant(q) {
-  const lq = q.toLowerCase();
-  return BRAND_KEYS.some(k => lq.includes(k) || k.includes(lq) || (lq.length > 3 && levenshtein(lq, k) <= 2));
-}
-
 function scoreItem(item, query) {
   const q = query.toLowerCase();
   const blob = `${item.name} ${item.description} ${item.tags.join(" ")}`.toLowerCase();
@@ -154,54 +137,54 @@ function Highlight({ text, query }) {
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 const Icons = {
-  github: () => (
+  Github: () => (
     <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
       <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
     </svg>
   ),
-  globe: () => (
+  Globe: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
       <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
       <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
     </svg>
   ),
-  user: () => (
+  User: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
       <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
     </svg>
   ),
-  code: () => (
+  Code: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
       <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
     </svg>
   ),
-  briefcase: () => (
+  Briefcase: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
       <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
     </svg>
   ),
-  mail: () => (
+  Mail: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
       <polyline points="22,6 12,13 2,6"/>
     </svg>
   ),
-  star: () => (
+  Star: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
     </svg>
   ),
-  zap: () => (
+  Zap: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
     </svg>
   ),
-  search: () => (
+  Search: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
       <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
     </svg>
   ),
-  sun: () => (
+  Sun: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
       <circle cx="12" cy="12" r="5"/>
       <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
@@ -210,18 +193,18 @@ const Icons = {
       <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
     </svg>
   ),
-  moon: () => (
+  Moon: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
       <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
     </svg>
   ),
-  external: () => (
+  External: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
       <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
       <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
     </svg>
   ),
-  close: () => (
+  Close: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="16" height="16">
       <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
     </svg>
@@ -401,7 +384,7 @@ export default function App() {
             </button>
           )}
           <button className="theme-btn" onClick={() => setDark(!dark)} style={{ background: "none", border: `1px solid var(--border)`, borderRadius: "8px", padding: "7px", cursor: "pointer", color: "var(--text2)", display: "flex" }}>
-            {dark ? <Icons.sun /> : <Icons.moon />}
+            {dark ? <Icons.Sun /> : <Icons.Moon />}
           </button>
         </div>
       </header>
@@ -428,7 +411,7 @@ export default function App() {
         <div className="search-wrap" style={{ position: "relative", marginBottom: "1.5rem" }}>
           <div className="glow-ring" />
           <div style={{ display: "flex", gap: "10px", background: "var(--bg2)", border: `1.5px solid var(--border)`, borderRadius: 13, padding: "10px 14px", alignItems: "center", boxShadow: "var(--shadow)" }}>
-            <span style={{ color: "var(--text2)", flexShrink: 0, display: "flex" }}><Icons.search /></span>
+            <span style={{ color: "var(--text2)", flexShrink: 0, display: "flex" }}><Icons.Search /></span>
             <input
               ref={inputRef}
               className="search-input"
@@ -441,7 +424,7 @@ export default function App() {
               autoComplete="off" spellCheck="false"
             />
             {query && (
-              <button onClick={clearSearch} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text2)", display: "flex", padding: 2 }}><Icons.close /></button>
+              <button onClick={clearSearch} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text2)", display: "flex", padding: 2 }}><Icons.Close /></button>
             )}
             <button
               className="search-btn"
@@ -457,7 +440,7 @@ export default function App() {
               {suggestions.map((s, i) => (
                 <div key={i} className="suggest-item" onClick={() => { setQuery(s); doSearch(s); }}
                   style={{ padding: "10px 16px", cursor: "pointer", fontSize: "0.88rem", display: "flex", alignItems: "center", gap: 10, color: "var(--text2)", transition: "all 0.15s" }}>
-                  <span style={{ color: "var(--text2)", opacity: 0.5 }}><Icons.search /></span>
+                  <span style={{ color: "var(--text2)", opacity: 0.5 }}><Icons.Search /></span>
                   {s}
                 </div>
               ))}
@@ -504,7 +487,7 @@ export default function App() {
             ) : (
               <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                 {results.map((item, idx) => {
-                  const IconComp = Icons[item.icon] || Icons.globe;
+                  const IconComp = Icons[item.icon] || Icons.Globe;
                   return (
                     <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer"
                       className="result-card fade-in"
@@ -521,7 +504,7 @@ export default function App() {
                             <CategoryBadge cat={item.category} />
                           </div>
                           <div style={{ fontSize: "0.76rem", color: "var(--url-color)", marginBottom: "6px", display: "flex", alignItems: "center", gap: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                            <Icons.external />
+                            <Icons.External />
                             {item.url}
                           </div>
                           <p style={{ fontSize: "0.85rem", color: "var(--text2)", lineHeight: 1.6 }}>
@@ -567,8 +550,8 @@ export default function App() {
               </div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 {[
-                  { label: "GitHub", url: "https://github.com/anointedthedeveloper", icon: "github" },
-                  { label: "Website", url: "https://anobyte.online", icon: "globe" },
+                  { label: "GitHub", url: "https://github.com/anointedthedeveloper", icon: "Github" },
+                  { label: "Website", url: "https://anobyte.online", icon: "Globe" },
                 ].map(l => {
                   const I = Icons[l.icon];
                   return (
